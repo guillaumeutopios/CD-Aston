@@ -1,19 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: dotnet-api-deployment
 spec:
   selector:
     matchLabels:
-      app: nginx
-  replicas: 1
+      app: dotnet
+  replicas: 2
   template:
     metadata:
       labels:
-        app: nginx
+        app: dotnet
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
+      - name: blazor
+        image: guillaumeutopios/blazorweatherforecast:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-blazor-deployment
+spec:
+  selector:
+    matchLabels:
+      app: dotnet
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: dotnet
+    spec:
+      containers:
+      - name: api
+        image: guillaumeutopios/apiweatherforecast:latest
         ports:
         - containerPort: 80
