@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: blazor
-        image: guillaumeutopios/blazorweatherforecast:latest
+        image: guillaumeutopios/apiweatherforecast:latest
         ports:
         - containerPort: 80
 ---
@@ -34,6 +34,6 @@ spec:
     spec:
       containers:
       - name: api
-        image: guillaumeutopios/apiweatherforecast:latest
+        image: guillaumeutopios/blazorweatherforecast:latest
         ports:
         - containerPort: 80
